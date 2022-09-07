@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        var testa =  [[${mya}]];
+        console.log(testa);
+    </script>
+    <style>
+        .trueStyle{
+            width: 100px;
+            height: 100px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+ <h1 th:text="${aa}">원래 문자열 입니다</h1>
+ <ul>
+<li th:each="name:${alist}">[[${name}]]</li>
+ </ul>
+<div th:if="${mytrue}">true면 나옵니다</div>
+<div th:classappend="${mytrue}?'trueStyle'"></div>
+<div th:replace="footer::copy"></div>
+</body>
+</html>
