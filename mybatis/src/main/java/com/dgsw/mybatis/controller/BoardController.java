@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,13 +22,27 @@ public class BoardController {
     @Autowired
     SqlSessionTemplate sqlSessionTemplate;
 
+    @PostMapping("update")
+    public String update(Test test){
+        sqlSessionTemplate.update("test.updatetest",test);
+        return "redirect:/board/findall";
+    }
+
+    @GetMapping("update")
+    public String update(int idx,Test test,Model model){
+        System.out.println("idx = "+idx);
+        sqlSessionTemplate.selectOne("test.findbyindex",idx);
+        System.out.println(test);
+        model.addAttribute("test",test);
+        return "insert";
+    }
+
     //select 해서 테이블 내용 뿌리기
     @GetMapping("findall")
     public String findall(Model model){
         System.out.println("findall");
 
         List<Test> testlist = sqlSessionTemplate.selectList("test.findall");
-
 
         model.addAttribute("a","10");
         model.addAttribute("testlist",testlist);
@@ -50,5 +65,22 @@ public class BoardController {
         sqlSessionTemplate.insert("test.inserttest",test);
         return "redirect:/board/findall";
     }
+
+
+   @PostMapping("delete")
+    public String delete(int[] idx){
+       List<Integer> list = new ArrayList<>();
+        if(idx != null){
+            for (int i = 0; i<idx.length; i++) {
+                System.out.println(idx[i]);
+                list.add(idx[i]);
+            }
+            System.out.println("출력끝");
+        }
+
+        sqlSessionTemplate.delete("test.deletetest",list);
+       System.out.println("delete");
+        return "redirect:/board/findall";
+   }
 
 }

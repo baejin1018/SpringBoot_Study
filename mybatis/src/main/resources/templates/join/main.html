@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common::html-head">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>findall</h1>
+    <form action="/board/delete" method="post">
+    <div th:replace="common::html-nav"></div>
+        <div class="row">
+            <div class="col-6">
+                학생테이블
+
+            <table class="table">
+            <tr>
+                <th>idx</th>
+                <th>학년</th>
+                <th>이름</th>
+            </tr>
+            </div>
+            </table>
+            <div class="col-6">
+                수강테이블
+                <table class="table">
+                <tr>
+                    <th>학생 idx</th>
+                    <th>idx (PK)</th>
+                    <th>과목명</th>
+                </tr>
+                </table>
+            </div>
+            <div class="row border my-3">
+                학생수강테이블(합쳐서 보여주는곳)
+                <table class="table">
+                    <table>
+                        <tr class="table">
+                            <td>idx</td>
+                            <td>학년</td>
+                            <td>이름</td>
+                            <td>과목명</td>
+                        </tr>
+                    </table> </table>
+            </div>
+        </div>
+    <div th:replace="common::html-foot"></div>
+</div>
+</body>
+</html>
