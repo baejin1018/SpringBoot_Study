@@ -21,29 +21,104 @@
   <body>
     <h1>JPA Study Front</h1>
     <input type="button" value="통신시작" id="mybtn" />
-    <div id="content"></div>
+    <div>
+      <div id="print"></div>
+      <input type="button" value="게시판 목록" id="list" />
+    </div>
+    <div>
+      <h1>글 저장</h1>
+      <form id="frmUpdate">
+        <input type="text" id="writer" value="작성자" />
+        <input type="text" id="content" value="내용" />
+        <input type="button" id="write" value="글 저장" />
+      </form>
+    </div>
+
+    <div>
+      <h1>글 수정</h1>
+      <form id="frm">
+        <input type="text" id="w_writer" value="작성자" />
+        <input type="text" id="w_content" value="내용" />
+        <input type="update" id="write" value="글 수정" />
+      </form>
+    </div>
+
+    <div>
+      <h1>글 삭제</h1>
+      <form id="frmDelete">
+        <input type="text" id="writer" value="작성자" />
+        <input type="text" id="content" value="내용" />
+        <input type="delete" id="write" value="글 삭제" />
+      </form>
+    </div>
   </body>
 </html>
 <script>
-  $("#mybtn").click(() => {
-    alert("누름");
 
-    var params = { lastName: "진영" };
-    var noparams = {};
-    $.ajax({
-      type: "GET",
-      url: "http://localhost:8080/api/list",
-      data: params,
-      success: function (datas, text) {
-        console.log(datas);
-        datas.map((data) => {
-          console.log(data);
-          $("#content").append(data.firstName + " " + data.lastName + "<br>");
-        });
-      },
-      error: function () {
-        alert("실패", result);
-      },
+  $("#write").click(function () {
+      var params = {
+        'write': $("#w_writer").val(),
+        'content': $("#w_contnet"),val(),
+      }
+      $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/board/list",
+        success: function (datas) {
+          $("#print").html("");
+          datas.map(function (data) {
+            console.log(data);
+            $("#print").append(
+              data.id + data.writer + data.content + data.wdate + "<br>"
+            );
+            // $('#content').html(data.firstName + " " + data.lastName + "<br>");
+          });
+        },
+        error: function (result) {
+          alert("실패", result);
+        },
+      });
     });
-  });
+
+
+    $("#list").click(function () {
+      $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/board/list",
+        success: function (datas) {
+          $("#print").html("");
+          datas.map(function (data) {
+            console.log(data);
+            $("#print").append(
+              data.id + data.writer + data.content + data.wdate + "<br>"
+            );
+            // $('#content').html(data.firstName + " " + data.lastName + "<br>");
+          });
+        },
+        error: function (result) {
+          alert("실패", result);
+        },
+      });
+    });
+
+    $("#mybtn").click(() => {
+      alert("누름");
+
+      var params = { lastName: "진영" };
+      var noparams = {};
+      $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/api/list",
+        data: params,
+        success: function (datas, text) {
+          console.log(datas);
+          datas.map((data) => {
+            console.log(data);
+            $("#content").append(data.firstName + " " + data.lastName + "<br>");
+          });
+        },
+        error: function () {
+          alert("실패", result);
+        },
+      });
+    });
 </script>
