@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as U from "./Update.style";
 import { useLocation, useNavigate } from "react-router-dom";
 import ex from "../../assets/image/background.jpg";
-import BoardApi from "../../core/api/Board.api";
+import BoardApi from "../../core/api/board.api";
 const UpdateComponent = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();

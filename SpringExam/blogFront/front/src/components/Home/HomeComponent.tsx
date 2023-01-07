@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import background from "../../assets/image/background.jpg";
-import BoardApi from "../../core/api/Board.api";
+import boardApi from "../../core/api/board.api";
 import * as H from "./Home.style";
 import { AiFillEye } from "react-icons/ai";
 
@@ -14,7 +14,7 @@ const HomeComponent = () => {
   }, []);
 
   const getData = async () => {
-    const result = await BoardApi.getBoards();
+    const result = await boardApi.getBoards();
     setData(result);
   };
 
@@ -45,7 +45,6 @@ const HomeComponent = () => {
                   <hr />
                   <H.PostViewDateContainer>
                     <div>{item.wdate}</div>
-
                     <div>
                       <AiFillEye />
                       {item.view}

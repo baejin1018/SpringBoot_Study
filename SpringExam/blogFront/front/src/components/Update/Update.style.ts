@@ -42,7 +42,7 @@ export const WirterInput = styled.input`
 
 export const TextArea = styled.textarea`
   resize: none;
-  width: 850px;
+  width: 800px;
   height: 200px;
 `;
 export const TitleInput = styled.input`

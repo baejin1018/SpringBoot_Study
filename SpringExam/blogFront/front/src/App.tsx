@@ -7,6 +7,8 @@ import Write from "./pages/Write";
 import reset from "styled-reset";
 import { createGlobalStyle } from "styled-components";
 import View from "./pages/View";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -29,6 +31,8 @@ function App() {
         <Route path="/write" element={<Write />} />
         <Route path="/update/:id" element={<Update />} />
         <Route path="/view/:id" element={<View />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </>
   );

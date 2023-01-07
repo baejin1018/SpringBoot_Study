@@ -3,7 +3,7 @@ import UpdateComponent from "../components/Update/UpdateComponent";
 
 const Update = () => {
   return (
-    <div>
+    <div>   
       <UpdateComponent />
     </div>
   );

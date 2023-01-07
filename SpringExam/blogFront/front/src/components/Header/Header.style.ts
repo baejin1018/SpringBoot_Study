@@ -15,12 +15,13 @@ export const HeaderContainer = styled.div`
 `;
 
 export const NavContainer = styled.div`
-  width: 30%;
+  width: 40%;
   display: flex;
   justify-content: space-around;
 `;
 
 export const NavTitle = styled.h3`
+  color: #000;
   text-decoration: underline solid white;
   font-size: 1.5rem;
 `;

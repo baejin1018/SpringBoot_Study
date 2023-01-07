@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import BoardApi from "../../core/api/Board.api";
+import BoardApi from "../../core/api/board.api";
 import * as V from "./View.style";
 import ex from "../../assets/image/background.jpg";
 import { AiFillEye } from "react-icons/ai";
@@ -11,6 +11,7 @@ interface dataType {
   wdate: string;
   writer: string;
   view: number;
+  imageId: number;
 }
 const ViewComponent = () => {
   const { pathname } = useLocation();
@@ -18,9 +19,18 @@ const ViewComponent = () => {
 
   useEffect(() => {
     getData();
+    getImage();
   }, []);
 
-  const [data, setData] = useState<dataType>();
+  const [data, setData] = useState<dataType>({
+    content: "",
+    id: 1,
+    title: "",
+    wdate: "",
+    writer: "",
+    view: 0,
+    imageId: 1,
+  });
 
   const currentId = Number(pathname.substring(6));
   const getData = async () => {
@@ -36,6 +46,14 @@ const ViewComponent = () => {
     await BoardApi.deletePost(currentId);
     navigate("/");
   };
+
+  const [img, setImg] = useState<string>();
+
+  const getImage = () => {
+    let url = `http://localhost:8080/board/image/${data.imageId}`;
+    setImg(url);
+  };
+
   return (
     <>
       {data && (
@@ -59,7 +77,7 @@ const ViewComponent = () => {
             </div>
             <p>{data.content}</p>
             <V.PostImgContainer>
-              <img src={ex} />
+              <img src={img} />
             </V.PostImgContainer>
             <button
               onClick={() => {
